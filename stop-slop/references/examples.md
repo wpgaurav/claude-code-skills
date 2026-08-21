@@ -57,3 +57,27 @@
 > "The best teams optimize for learning, not productivity."
 
 **Changes:** Direct claim. No rhetorical scaffolding.
+
+---
+
+## Example 6: Pricing Copy
+
+**Before:**
+> "Unlock the full power of our platform with our Pro plan. It's a game-changer for teams looking to navigate the complexities of modern collaboration. Whether you're a solo founder or a growing organisation, this tier delivers everything you need to take your workflow to the next level."
+
+**After:**
+> "Pro: 10 seats, unlimited projects, priority support. $29 per seat per month."
+
+**Changes:** 47 words to 12. Kept the four facts a buyer compares (seats, project limit, support level, price). Cut significance inflation ("unlock the full power"), jargon ("game-changer"), gerund filler ("navigate the complexities"), and false comprehensiveness ("whether you're X or Y").
+
+---
+
+## Example 7: Generic AI Claim
+
+**Before:**
+> "In today's fast-paced digital landscape, leveraging AI can be a transformative way to elevate your content strategy and unlock new levels of engagement."
+
+**After:**
+> "AI gets a first draft onto the screen faster. I still own the claims, examples, and final edit."
+
+**Changes:** 25 words carrying one idea became two sentences that name the useful gain and the work the tool cannot own. Removed the landscape opener and four hype verbs.

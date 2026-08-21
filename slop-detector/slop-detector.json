@@ -1,0 +1,449 @@
+{
+  "version": "2.0",
+  "description": "Machine-readable editorial diagnostics for AI slop. Exact high-confidence constructions may block publication; lexical and structural signals require context.",
+  "severity_model": {
+    "hard_fail": {
+      "blocking": true,
+      "scored": false,
+      "rule": "Use only for exact, high-confidence constructions in editable reader-facing copy. A hard-fail match blocks regardless of advisory score."
+    },
+    "warn_if_repeated": {
+      "blocking": false,
+      "scored": true,
+      "rule": "One occurrence may be intentional. Warn only when the category's repeat threshold is met."
+    },
+    "contextual_review": {
+      "blocking": false,
+      "scored": true,
+      "rule": "A match is a review prompt, not proof of bad writing. Check quotations, code, proper names, technical meanings, and surrounding evidence before editing."
+    },
+    "structural_diagnostic": {
+      "blocking": false,
+      "scored": true,
+      "rule": "Document-level heuristic. Diagnose in context and never add fragments, emotion, entities, or asymmetry merely to satisfy the detector."
+    }
+  },
+  "categories": {
+    "broad_lexical_tells": {
+      "severity": "contextual_review",
+      "description": "Broad lexical tells. Never instant failures; review the meaning of each match in context.",
+      "patterns": [
+        "landscape",
+        "journey",
+        "delve",
+        "dive into",
+        "deep dive",
+        "leverage",
+        "utilize",
+        "seamless",
+        "seamlessly",
+        "robust",
+        "comprehensive",
+        "holistic",
+        "empower",
+        "game-changer",
+        "game-changing",
+        "revolutionary",
+        "groundbreaking",
+        "cutting-edge",
+        "state-of-the-art",
+        "next-level",
+        "unlock potential",
+        "supercharge",
+        "turbocharge",
+        "streamline"
+      ]
+    },
+    "connector_swaps": {
+      "severity": "contextual_review",
+      "description": "Possible simplifications. Replace only when the alternative preserves meaning and rhythm.",
+      "replacements": {
+        "Furthermore": "And",
+        "Moreover": "Also",
+        "Additionally": "And",
+        "However": "But",
+        "Therefore": "So",
+        "Consequently": "So",
+        "Subsequently": "Then",
+        "Nevertheless": "But",
+        "In addition": "And",
+        "In conclusion": "[delete - just end]",
+        "To summarize": "[delete - just end]"
+      }
+    },
+    "phrase_simplifications": {
+      "severity": "contextual_review",
+      "description": "Possible simplifications. Direct quotation, legal language, and technical wording may legitimately retain the original.",
+      "replacements": {
+        "in order to": "to",
+        "due to the fact that": "because",
+        "at this point in time": "now",
+        "in the event that": "if",
+        "prior to": "before",
+        "subsequent to": "after",
+        "in close proximity to": "near",
+        "a large number of": "many",
+        "the vast majority of": "most",
+        "in light of": "because of",
+        "with respect to": "about",
+        "on the basis of": "based on",
+        "for the purpose of": "to",
+        "in spite of the fact that": "although",
+        "it is important to note that": "[delete]",
+        "it is worth mentioning": "[delete]",
+        "it goes without saying": "[delete]",
+        "needless to say": "[delete]"
+      }
+    },
+    "ai_tells": {
+      "severity": "contextual_review",
+      "description": "Common model-shaped phrases. Review in context; a single match is not a publication blocker.",
+      "patterns": [
+        "I'd be happy to help",
+        "Great question",
+        "That's a great point",
+        "Let me explain",
+        "Allow me to",
+        "I hope this helps",
+        "Feel free to ask",
+        "Don't hesitate to",
+        "Here are several",
+        "There are several [^.?!]{0,40} to consider",
+        "plays a crucial role",
+        "has become increasingly",
+        "offers a wide range",
+        "provides a variety",
+        "is designed to",
+        "allows you to",
+        "enables you to",
+        "makes it easy to",
+        "Whether you're looking to",
+        "\\bFrom (?:[\\w'-]+ ){1,3}to (?:[\\w'-]+ ?){1,3},",
+        "Not only [^.?!]{0,60} but also",
+        "stands out",
+        "excels at",
+        "shines when",
+        "is a popular choice",
+        "is a great option",
+        "is a solid choice",
+        "what sets [^.?!]{0,40} apart",
+        "a must-have",
+        "won't break the bank",
+        "look no further",
+        "It's worth noting",
+        "It's clear that",
+        "stands as a testament",
+        "paving the way",
+        "boasts"
+      ]
+    },
+    "retired_and_secret_reveal_constructions": {
+      "severity": "contextual_review",
+      "description": "Exact retired or secret-reveal framing. Remove from ordinary prose, but review quotations, titles under discussion, and literal reporting before editing.",
+      "patterns": [
+        "\\bhere(?:'|’)s the thing\\b",
+        "\\bhere(?:'|’)s what nobody tells you\\b",
+        "\\bwhat no one tells you about\\b",
+        "\\bthe thing nobody talks about\\b",
+        "\\bthat nobody talks about\\b"
+      ]
+    },
+    "production_commentary": {
+      "severity": "hard_fail",
+      "description": "Hard-fail production narration in captions, alt text, and reader-facing prose",
+      "applies_to": [
+        "figcaption",
+        "img_alt",
+        "image_caption",
+        "image_description",
+        "body_prose",
+        "table_cell",
+        "table_header",
+        "list_item",
+        "callout"
+      ],
+      "patterns": [
+        "\\b(?:png-graphics|gpt-image|svg-graphics|annotated-screenshots)\\b(?![-\\s]?\\d)",
+        "\\brendered\\s+at\\s+\\d+x\\s+DPR\\b",
+        "\\bdevice\\s*scale\\s*factor\\b",
+        "\\b(?:fresh|freshly|newly|recently|just)[-\\s]?(?:captured|taken|grabbed|shot|recorded|pulled|rendered)\\b",
+        "\\b(?:a|an|another)?\\s*(?:fresh|live|recent)\\s+(?:playwright\\s+)?(?:capture|screen\\s?grab|screenshot)\\b",
+        "\\bnot\\s+(?:just\\s+)?(?:a|an|another)?\\s*(?:generic|stock|staged|fake|placeholder|mock(?:ed)?[-\\s]?up|ai[-\\s]generated)\\b",
+        "\\b(?:real|actual|genuine|authentic)\\s+(?:screenshot|capture|screen\\s?grab)\\b",
+        "\\b(?:instead\\s+of|rather\\s+than|beats|better\\s+than|no\\s+more)\\s+(?:a\\s+|an\\s+|another\\s+)?(?:generic\\s+)?stock\\s+(?:photo|image|shot)\\b",
+        "\\bstock\\s+(?:laptop|office|desk|business|handshake)\\s+(?:photo|image)\\b",
+        "\\breal\\s+[^.]{0,40}\\bscreenshot\\b[^.]{0,40}\\bstock\\b",
+        "\\bprompted\\s+with\\b",
+        "\\bthe\\s+prompt\\s+(?:I|we)\\s+(?:used|wrote|gave)\\b",
+        "\\b(?:source|credit)\\s*:\\s*(?:my|our)\\s+own\\s+(?:capture|screenshot|render)\\b",
+        "\\bmy\\s+own\\s+(?:capture|screen\\s?grab)\\b"
+      ],
+      "notes": [
+        "Patterns are verb-scoped or construction-scoped on purpose. Bare 'Playwright', 'Canva', 'ChatGPT', 'Midjourney', 'stock photo', 'screenshot', and 'prompt' are all legitimate subject matter on many sites, so only the production-narration constructions around them fail.",
+        "Internal tool or skill names that leak into captions (png-graphics, gpt-image, svg-graphics, annotated-screenshots) fail, but not when followed by a version number: gpt-image-2-2026-04-21 is a model id that legitimately appears in settings screenshots.",
+        "Validated against 8,226 real alt and caption strings from one production site: 0 false positives, and 31/31 on the production-narration test corpus.",
+        "'AI-generated' fails only when it qualifies the asset (image, illustration, graphic, render...) or stands alone as the whole caption. 'AI-generated keyword variations' describes a product feature and must pass.",
+        "asset_only_patterns hard-fail only in figcaption, img_alt, image_caption, and image_description. In body prose, list items, and table cells they are contextual_review: 'a landing page generated by an AI tool' or 'a comp created with Figma' can describe a reader's workflow rather than narrate this page's own production. The patterns that stay in `patterns` (fresh capture, not a generic mockup, real screenshot beats stock, render settings, prompt narration, leaked tool names) are production narration wherever they appear."
+      ],
+      "asset_only_patterns": [
+        "\\b(?:captured|taken|shot|grabbed|recorded|rendered|generated|created|made|produced|built|composed|exported)\\s+(?:with|using|via|through|by|in)\\s+(?:a\\s+|an\\s+|the\\s+)?(?:playwright|puppeteer|selenium|chrome\\s*devtools|devtools|headless\\s+chrom(?:e|ium)|chromium|capture\\s+script|screenshot\\s+script|render(?:er|ing)?\\s+script|tailwind|ai\\b|chatgpt|gpt[-\\s]?image|dall[-\\s]?e|midjourney|stable\\s+diffusion|canva|figma|photoshop)",
+        "\\bAI[-\\s]generated\\s+(?:image|illustration|graphic|visual|artwork|render|photo|cover|hero|diagram|art)\\b",
+        "^\\s*AI[-\\s]generated\\.?\\s*$",
+        "\\bgenerated\\s+by\\s+(?:AI|an?\\s+AI|a\\s+model|a\\s+diffusion\\s+model)\\b"
+      ]
+    },
+    "empty_intensifiers": {
+      "severity": "contextual_review",
+      "description": "Review these words for empty emphasis. Keep them when they carry literal scale, quotation, or necessary meaning.",
+      "patterns": [
+        "\\bextremely\\b",
+        "\\bincredibly\\b",
+        "\\babsolutely\\b",
+        "\\btruly\\b",
+        "\\breally\\b",
+        "\\bvery\\b",
+        "\\bhighly\\b",
+        "\\btotally\\b",
+        "\\bcompletely\\b",
+        "\\bentirely\\b",
+        "\\butterly\\b",
+        "\\bremarkably\\b",
+        "\\bexceptionally\\b",
+        "\\bamazingly\\b",
+        "\\bstunningly\\b",
+        "\\bundeniably\\b",
+        "\\bundoubtedly\\b",
+        "\\bdefinitely\\b",
+        "\\bcertainly\\b"
+      ]
+    },
+    "hype_adjectives": {
+      "severity": "contextual_review",
+      "description": "Review these descriptors for unsupported hype. A quoted claim or proper name is not automatically a defect.",
+      "patterns": [
+        "amazing",
+        "awesome",
+        "incredible",
+        "fantastic",
+        "wonderful",
+        "excellent",
+        "outstanding",
+        "exceptional",
+        "remarkable",
+        "extraordinary",
+        "phenomenal",
+        "spectacular",
+        "stunning",
+        "mind-blowing",
+        "unparalleled",
+        "unprecedented"
+      ]
+    },
+    "fancy_words": {
+      "severity": "contextual_review",
+      "description": "Possible plain-language substitutions. Preserve the original when it is the precise technical, mathematical, legal, or quoted term.",
+      "replacements": {
+        "myriad": "many",
+        "plethora": "many",
+        "paramount": "important",
+        "pivotal": "important",
+        "quintessential": "[rewrite sentence]",
+        "aforementioned": "this/that",
+        "whilst": "while",
+        "amongst": "among",
+        "endeavor": "try",
+        "facilitate": "help",
+        "commence": "start",
+        "terminate": "end",
+        "ascertain": "find out",
+        "cognizant": "aware",
+        "optimal": "best",
+        "substantial": "large/big",
+        "numerous": "many",
+        "multifaceted": "[be specific]",
+        "nuanced": "[be specific]",
+        "meticulous": "careful",
+        "intricate": "[be specific]",
+        "vibrant": "[be specific]",
+        "dynamic": "[be specific]"
+      }
+    },
+    "repeated_scaffolds": {
+      "severity": "warn_if_repeated",
+      "description": "Rhetorical scaffolds that may carry one real turn but become model-shaped when repeated.",
+      "checks": [
+        {
+          "name": "mirrored_contrast",
+          "repeat_threshold": 2,
+          "patterns": [
+            "\\bit(?:'|’)s not just [^.?!]+[.?!]\\s+it(?:'|’)s [^.?!]+[.?!]",
+            "\\bit(?:'|’)s not about [^.?!]+[.?!]\\s+it(?:'|’)s about [^.?!]+[.?!]",
+            "\\b[^.?!]+ isn(?:'|’)t the (?:problem|point)[.?!]\\s+[^.?!]+ is[.?!]",
+            "\\bthis isn(?:'|’)t [^.?!]+[.?!]\\s+this is [^.?!]+[.?!]"
+          ]
+        },
+        {
+          "name": "rhetorical_no_triad",
+          "repeat_threshold": 2,
+          "pattern": "(?:^|(?<=[.!?])\\s+)No [^.?!]+[.]\\s+No [^.?!]+[.]\\s+No [^.?!]+[.]"
+        },
+        {
+          "name": "repetitive_no_just",
+          "repeat_threshold": 3,
+          "pattern": "(?:^|(?<=[.!?])\\s+)No [^.?!]+[.]\\s+Just [^.?!]+[.]"
+        }
+      ]
+    },
+    "structural_patterns": {
+      "severity": "structural_diagnostic",
+      "description": "Document-level diagnostics. Review the pattern and its cause; do not manufacture irregularity to make a metric pass.",
+      "checks": [
+        {
+          "name": "identical_paragraph_length",
+          "description": "All paragraphs within 10 words of each other",
+          "review_priority": "medium"
+        },
+        {
+          "name": "symmetric_pros_cons",
+          "description": "Equal number of pros and cons with similar lengths",
+          "review_priority": "low"
+        },
+        {
+          "name": "uniform_sentence_band",
+          "description": "Nearly every sentence in a 2,000+ word piece falls in the same length band. Absence of fragments alone is not a defect; never add fragments solely to clear this diagnostic.",
+          "review_priority": "medium"
+        },
+        {
+          "name": "passive_voice_heavy",
+          "description": "More than 20% passive voice constructions",
+          "review_priority": "high"
+        },
+        {
+          "name": "dead_table_column",
+          "description": "A DATA column whose value is identical in every row (>=5 rows). Carries zero information; delete it and state the fact once in a sentence beside the table.",
+          "review_priority": "high",
+          "exception": "Action columns do not count: a column whose cells are all links or buttons ('Download', 'Try free', 'Sign Up') is a legitimate UI affordance and identical labels are expected. Prefer descriptive anchor text over 'Click here', but do not delete the column."
+        },
+        {
+          "name": "near_dead_table_column",
+          "description": "A table column with the same value in >=80% of rows (>=5 rows). Usually collapsible into a note.",
+          "review_priority": "medium"
+        },
+        {
+          "name": "repeated_per_item_sentence",
+          "description": "Same sentence closing 3+ item sections within one article",
+          "review_priority": "high"
+        },
+        {
+          "name": "sibling_article_boilerplate",
+          "description": "Section byte-identical across 3+ sibling articles in the same template family",
+          "review_priority": "high"
+        },
+        {
+          "name": "faq_duplicates_own_h2",
+          "description": "An FAQ entry restating one of the article's own H2 sections",
+          "review_priority": "medium"
+        },
+        {
+          "name": "count_claim_mismatch",
+          "description": "Title or body claims N items but the article contains a different number",
+          "review_priority": "high"
+        }
+      ]
+    },
+    "process_leakage": {
+      "severity_by_pattern_group": {
+        "always_fail": "hard_fail",
+        "limit_one": "warn_if_repeated",
+        "contextual_review": "contextual_review"
+      },
+      "description": "Exact tooling/apology constructions hard-fail. Compact claim boundaries are allowed; repeated scope disclaimers warn only after the configured threshold. Broad research terms remain contextual review.",
+      "applies_to": [
+        "body_prose",
+        "list_item",
+        "table_cell",
+        "table_header",
+        "figcaption",
+        "callout"
+      ],
+      "patterns": [
+        "\\b(?:the (?:scraper|crawler|capture script|text browser|render(?:er)?) I (?:used|ran)|my (?:scraper|crawler|capture script)|the tool I used)\\b",
+        "\\bthe (?:scraper|crawler|capture script|text browser|render(?:er)?) (?:used|run) for this (?:update|study|review|piece)\\b",
+        "\\bFeature review only\\b",
+        "\\bStatus in this (?:study|review)\\b",
+        "\\baccuracy (?:crown|score)\\b.{0,40}\\bunverified\\b",
+        "\\bWeak spot:\\s*I (?:didn't|did not|couldn't|could not)",
+        "\\bI won't turn\\b.{0,60}\\binto an? (?:accuracy )?score\\b"
+      ],
+      "always_fail": [
+        "\\b(?:the (?:scraper|crawler|capture script|text browser|render(?:er)?) I (?:used|ran)|my (?:scraper|crawler|capture script)|the tool I used)\\b",
+        "\\bthe (?:scraper|crawler|capture script|text browser|render(?:er)?) (?:used|run) for this (?:update|study|review|piece)\\b",
+        "\\bFeature review only\\b",
+        "\\bStatus in this (?:study|review)\\b",
+        "\\baccuracy (?:crown|score)\\b.{0,40}\\bunverified\\b",
+        "\\bWeak spot:\\s*I (?:didn't|did not|couldn't|could not)",
+        "\\bI won't turn\\b.{0,60}\\binto an? (?:accuracy )?score\\b"
+      ],
+      "limit_one": [
+        "\\bin this (?:study|update|round|review|test)\\b",
+        "\\bfor this (?:update|study|round|piece)\\b",
+        "\\bmatching (?:accounts|settings)\\b.{0,60}\\b(?:so|therefore)\\b",
+        "\\bI (?:didn't|did not|couldn't|could not|haven't|have not) (?:run|test(?:ed)?|verif(?:y|ied)|reproduc(?:e|ed)|independently (?:test(?:ed)?|verif(?:y|ied)|check(?:ed)?)|attach(?:ed)?|quer(?:y|ied)|check(?:ed)?|scor(?:e|ed)|fetch(?:ed)?)"
+      ],
+      "contextual_review": [
+        "\\bno (?:independently )?(?:reproduced|verified) result\\b",
+        "\\btext browsers?\\b",
+        "\\bAccess reviewed\\b"
+      ],
+      "allowance": "A claim boundary may be stated once, in the methodology or attached to the specific claim it bounds, phrased as a rule ('No tool receives an accuracy score unless it was queried under matching settings') or as a scope limit ('I have not run the same cloned checkout test, so I rank it on architecture, not an invented latency number'). That is correct practice, not a defect. A third limit_one occurrence, or per-item repetition, triggers warn_if_repeated review; it does not become a hard fail. always_fail contains only exact production/apology constructions.",
+      "notes": [
+        "The scraper/crawler pattern is deliberately first-person-scoped: bare 'crawler'/'scraper' is legitimate SEO subject matter on many sites.",
+        "Bare 'text browser', 'Access reviewed', and 'no independently verified result' can carry legitimate technical or claim-boundary meaning, so they require contextual review rather than automatic blocking."
+      ],
+      "limit_one_max": 2
+    },
+    "templated_filler": {
+      "severity": "warn_if_repeated",
+      "description": "Sentences a roundup template emits identically for every item. Zero information about the item. The patterns are real examples from one site; add your own.",
+      "repeat_threshold": 3,
+      "applies_to": [
+        "body_prose",
+        "list_item"
+      ],
+      "rule": "If the same sentence closes 3+ item sections in one article, or is byte-identical across sibling articles, delete it. Advice true of every item belongs once, in the intro or buying section.",
+      "patterns": [
+        "That makes the (?:book|tool|product|option) useful when your immediate goal matches",
+        "Read the table of contents and a sample chapter before buying",
+        "A clear sample at the right level is more valuable than",
+        "Check Amazon\\.com or Amazon\\.in for the exact edition"
+      ],
+      "accepted_exceptions": [
+        "A templated sentence may be kept when it carries a functional element such as the per-item links in a roundup. Record the exception in your own notes and do not add new instances."
+      ]
+    }
+  },
+  "scoring": {
+    "scope": "Advisory score for warn_if_repeated, contextual_review, and structural_diagnostic findings after human context review. Hard-fail matches are not scored; they block publication independently.",
+    "points": {
+      "warn_if_repeated": 2,
+      "contextual_review_confirmed": 1,
+      "structural_diagnostic_high": 3,
+      "structural_diagnostic_medium": 2,
+      "structural_diagnostic_low": 1
+    },
+    "thresholds": {
+      "clean": {
+        "min": 0,
+        "max": 5
+      },
+      "needs_editing": {
+        "min": 6,
+        "max": 15
+      },
+      "rewrite_required": {
+        "min": 16,
+        "max": null
+      }
+    }
+  }
+}

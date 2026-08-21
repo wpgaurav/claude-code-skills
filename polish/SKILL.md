@@ -1,14 +1,17 @@
 ---
 name: polish
 description: Final quality pass before shipping. Fixes alignment, spacing, consistency, and detail issues that separate good from great.
-user-invokable: true
-args:
-  - name: target
-    description: The feature or area to polish (optional)
-    required: false
+argument-hint: "[target]"
+license: Apache-2.0
+metadata:
+  version: 1.1.0
+  source: https://github.com/pbakaus/impeccable
+  source-license: Apache-2.0
+  maintainer: Gaurav Tiwari
 ---
+> Adapted from [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. Modified for this collection; see [NOTICE.md](../NOTICE.md) for what changed.
 
-**First**: Use the frontend-design skill for design principles and anti-patterns.
+**First**: If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/design`, or the project's own design system), load it for principles and anti-patterns. Otherwise continue with the checks below.
 
 Perform a meticulous final pass to catch all the small details that separate good work from great work. The difference between shipped and polished.
 

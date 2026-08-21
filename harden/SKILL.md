@@ -1,12 +1,15 @@
 ---
 name: harden
 description: Improve interface resilience through better error handling, i18n support, text overflow handling, and edge case management. Makes interfaces robust and production-ready.
-user-invokable: true
-args:
-  - name: target
-    description: The feature or area to harden (optional)
-    required: false
+argument-hint: "[target]"
+license: Apache-2.0
+metadata:
+  version: 1.1.0
+  source: https://github.com/pbakaus/impeccable
+  source-license: Apache-2.0
+  maintainer: Gaurav Tiwari
 ---
+> Adapted from [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. Modified for this collection; see [NOTICE.md](../NOTICE.md) for what changed.
 
 Strengthen interfaces against edge cases, errors, internationalization issues, and real-world usage scenarios that break idealized designs.
 

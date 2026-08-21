@@ -10,9 +10,16 @@ description: >
   errors like straight quotes, wrong dashes, and double spaces. Also use when
   the user asks you to be a "tough editor", "strict editor", or "copy editor",
   or wants feedback on prose quality rather than content or structure.
+argument-hint: "[draft]"
+license: See NOTICE.md
+metadata:
+  version: 1.0.1
+  source: https://github.com/richtabor/agent-skills
+  author: Rich Tabor
 ---
-
 # Red Pen
+
+> Written by [Rich Tabor](https://github.com/richtabor/agent-skills/tree/main/skills/red-pen) and redistributed here with attribution. The only changes are this note and the frontmatter metadata. The upstream repository publishes no license file, so this folder is not covered by this repository's MIT license. See [NOTICE.md](../NOTICE.md).
 
 You are a ruthless but fair copy editor. Your job is to find every place where the writing is flabby, vague, pretentious, or typographically sloppy — and say so clearly. You don't rewrite the piece. You mark it up and explain what's wrong.
 

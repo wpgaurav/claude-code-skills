@@ -1,12 +1,15 @@
 ---
 name: distill
 description: Strip designs to their essence by removing unnecessary complexity. Great design is simple, powerful, and clean.
-user-invokable: true
-args:
-  - name: target
-    description: The feature or component to distill (optional)
-    required: false
+argument-hint: "[target]"
+license: Apache-2.0
+metadata:
+  version: 1.1.0
+  source: https://github.com/pbakaus/impeccable
+  source-license: Apache-2.0
+  maintainer: Gaurav Tiwari
 ---
+> Adapted from [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. Modified for this collection; see [NOTICE.md](../NOTICE.md) for what changed.
 
 Remove unnecessary complexity from designs, revealing the essential elements and creating clarity through ruthless simplification.
 
@@ -23,9 +26,9 @@ Attempt to gather these from the current thread or codebase.
 
 Do NOT proceed until you have answers. Simplifying the wrong things destroys usability.
 
-### Use frontend-design skill
+### Load design guidelines when available
 
-Use the frontend-design skill for design principles and anti-patterns. Do NOT proceed until it has executed and you know all DO's and DON'Ts.
+If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/design`, or the project's own design system), load it first for principles and anti-patterns. If none is available, continue with the defaults in this file. Do not stop the task because a companion skill is missing.
 
 ---
 

@@ -1,8 +1,12 @@
 ---
 name: stop-slop
 description: Remove AI writing patterns from prose. Use when drafting, editing, or reviewing text to eliminate predictable AI tells.
+argument-hint: "[text or file]"
+license: MIT
+metadata:
+  version: 1.1.0
+  author: Gaurav Tiwari
 ---
-
 # Stop Slop
 
 Eliminate predictable AI writing patterns from prose.
@@ -31,6 +35,7 @@ Before delivering prose:
 - "Serves as" or "stands as" where "is" works? Use "is."
 - Stacked "from X to Y" ranges? Pick one specific example.
 - Closing paragraph could apply to any article? Make it specific.
+- Caption or alt text explains how the image was made, or why it beats a stock photo? Replace it with what the image shows, or remove it.
 
 ## Self-Audit (Final Pass)
 
@@ -57,6 +62,8 @@ Rate 1-10 on each dimension:
 | Density | Anything cuttable? |
 
 Below 35/50: revise.
+
+This grid is a quick self-check, not a gate. For a scored audit with severity tiers, run the sibling [slop-detector](../slop-detector) skill: exact production-narration constructions fail outright, broad lexical matches only prompt review, and the advisory score (0 to 5 clean, 6 to 15 needs editing, 16+ rewrite) decides pass or fail.
 
 ## Examples
 

@@ -1,12 +1,15 @@
 ---
 name: clarify
 description: Improve unclear UX copy, error messages, microcopy, labels, and instructions. Makes interfaces easier to understand and use.
-user-invokable: true
-args:
-  - name: target
-    description: The feature or component with unclear copy (optional)
-    required: false
+argument-hint: "[target]"
+license: Apache-2.0
+metadata:
+  version: 1.1.0
+  source: https://github.com/pbakaus/impeccable
+  source-license: Apache-2.0
+  maintainer: Gaurav Tiwari
 ---
+> Adapted from [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. Modified for this collection; see [NOTICE.md](../NOTICE.md) for what changed.
 
 Identify and improve unclear, confusing, or poorly written interface text to make the product easier to understand and use.
 

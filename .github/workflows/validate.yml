@@ -1,0 +1,23 @@
+name: Validate skills
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate skills
+        run: ./scripts/validate.sh
+      - name: Scan the README with the detector
+        run: python3 slop-detector/scripts/scan.py README.md
