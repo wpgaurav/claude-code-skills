@@ -28,7 +28,7 @@ Do NOT proceed until you have answers. Simplifying the wrong things destroys usa
 
 ### Load design guidelines when available
 
-If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/design`, or the project's own design system), load it first for principles and anti-patterns. If none is available, continue with the defaults in this file. Do not stop the task because a companion skill is missing.
+If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/impeccable` commands, or the project's own design system), load it first for principles and anti-patterns. If none is available, continue with the defaults in this file. Do not stop the task because a companion skill is missing.
 
 ---
 

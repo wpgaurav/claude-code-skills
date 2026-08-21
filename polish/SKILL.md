@@ -11,7 +11,7 @@ metadata:
 ---
 > Adapted from [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. Modified for this collection; see [NOTICE.md](../NOTICE.md) for what changed.
 
-**First**: If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/design`, or the project's own design system), load it for principles and anti-patterns. Otherwise continue with the checks below.
+**First**: If a design-guidelines skill is installed (Anthropic's `frontend-design`, impeccable's `/impeccable` commands, or the project's own design system), load it for principles and anti-patterns. Otherwise continue with the checks below.
 
 Perform a meticulous final pass to catch all the small details that separate good work from great work. The difference between shipped and polished.
 

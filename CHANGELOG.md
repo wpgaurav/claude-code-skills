@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.1 - 2026-08-21
+
+### Fixed
+
+- `NOTICE.md` now states that the five impeccable-derived skills are near-verbatim copies of impeccable's January 2026 command files, frontmatter aside; the earlier wording credited this repository with additions that were Paul Bakaus's.
+- The soft dependency line in `distill`, `quieter`, and `polish` named a `/design` command impeccable does not have; it now says `/impeccable`.
+
 ## 1.1.0 - 2026-08-21
 
 ### Added

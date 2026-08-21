@@ -16,7 +16,7 @@ Covered by [LICENSE](./LICENSE).
 
 These five skills are derived from the command references in [impeccable](https://github.com/pbakaus/impeccable) by Paul Bakaus, used under the Apache License 2.0. A copy of that license is in [LICENSE-APACHE-2.0](./LICENSE-APACHE-2.0).
 
-Changes made in this repository: added standalone `SKILL.md` frontmatter so each command works as its own Claude Code skill; added a context-gathering preamble and an explicit stop-and-ask step; replaced the hard dependency on impeccable's design-guideline loader with a soft "load it if installed" instruction so the skills run without the parent project; and light copy edits. The underlying method, checklists, and examples remain Paul Bakaus's work. These folders stay under Apache-2.0; the MIT license of this repository does not cover them.
+The body text of each skill is Paul Bakaus's, taken nearly verbatim from impeccable's `.claude/commands/*.md` files as they stood in January 2026, including the context-gathering preamble and the stop-and-ask step. Changes made in this repository: standalone `SKILL.md` frontmatter so each command works as its own Claude Code skill; on 2026-08-21, the hard "do not proceed until the frontend-design skill has executed" dependency was replaced with a soft "load it if installed" instruction so the skills run without a companion project; and an attribution note. The method, checklists, and examples remain Paul Bakaus's work. These folders stay under Apache-2.0; the MIT license of this repository does not cover them. impeccable itself is at [impeccable.style](https://impeccable.style).
 
 ## Red Pen by Rich Tabor (no upstream license)
 
