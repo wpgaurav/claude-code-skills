@@ -1,5 +1,7 @@
 # Claude Code Skills
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=flat&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/gauravtiwari)
+
 An opinionated toolkit of [Agent Skills](https://code.claude.com/docs/en/skills) for fighting AI slop in copy, design, and code.
 
 Each folder is a self-contained skill: a `SKILL.md` with instructions, plus reference files and scripts where they earn their place. The files are plain Markdown and Python, so they work in Claude Code, Codex, Cursor, and any agent that reads a `SKILL.md`.
@@ -97,6 +99,16 @@ The GitHub workflow runs the same validation on every push and pull request.
 ## Contributing
 
 Pull requests welcome. The bar is the one the skills enforce: short, opinionated, immediately actionable. A new detector pattern needs a must-fail and a must-pass case in `test-severity.py`. See [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Support This Project
+
+These free skills catch AI slop in copy, design and code, using plain Markdown and Python files that work in Claude Code, Codex and Cursor. I wrote stop-slop and slop-detector, and a GitHub workflow validates the whole repo and runs its tests on every push.
+
+You can buy me a coffee if slop-detector flagged an AI tell in one of your drafts before your readers saw it.
+
+<a href="https://buymeacoffee.com/gauravtiwari"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy me a coffee" height="50"></a>
+
+A star is welcome, and when you find an AI tell the detector misses, a pull request with the pattern plus its must-fail and must-pass cases is the most useful thing you can send.
 
 ## License and attribution
 
