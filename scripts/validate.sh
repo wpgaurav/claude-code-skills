@@ -45,9 +45,11 @@ for skill_dir in sorted(p for p in root.iterdir() if p.is_dir() and (p / 'SKILL.
         if not target.exists():
             print(f"{skill_dir}: broken relative link {link}"); bad += 1
     for f in skill_dir.rglob('*'):
+        if f.name.startswith('local-'):
+            print(f"{f}: local-only file; it must never be published"); bad += 1
         if f.is_file() and f.suffix in ('.md', '.json', '.py', '.sh', '.txt'):
             content = f.read_text(encoding='utf-8', errors='replace')
-            if re.search(r'(/Users/|~/\.env|cookies\.json|gho_[A-Za-z0-9]|github_pat_|claude-sync|anti-slop/|\bquality/quality-gates)', content):
+            if re.search(r'(/Users/|~/\.env|cookies\.json|gho_[A-Za-z0-9]|github_pat_|claude-sync|Mobile Documents|writing-system/|local-only:(?:start|end)|anti-slop/|\bquality/quality-gates)', content):
                 print(f"{f}: contains a private path or credential-like value"); bad += 1
 print(f"checked {sum(1 for p in root.iterdir() if p.is_dir() and (p / 'SKILL.md').is_file())} skills")
 sys.exit(1 if bad else 0)
