@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 - 2026-10-24
+
+### Fixed
+
+- `stop-slop` is now credited to Hardik Pandya, whose [stop-slop](https://github.com/hardikpandya/stop-slop) it is based on. `NOTICE.md`, the README and the skill's frontmatter previously named Gaurav Tiwari as its sole author, while the folder's `LICENSE` was already Hardik's. The license now carries both copyright lines.
+
+### Changed
+
+- `stop-slop` 2.0.0: a four-tier severity model for reading matches, rules 6 to 9 (production narration, performed humanity, details with a job, leaving working prose alone), a "What I Keep" list of voice features it will not strip, extra quick checks and self-audit items, a scored pass that mirrors `slop-detector`, and "What It Won't Do." The phrase list gains retired openers, chatbot tells, listicle slop, wordy phrases and words that are not slop. The structure list gains mirrored contrasts, repeated punchlines, templated filler, production commentary, process leakage, performed humanity, template symmetry, explained implication, buried answers, over-hedging and dead table columns. Six new before/after examples, including one where the right edit is none.
+
 ## 1.1.1 - 2026-08-21
 
 ### Fixed

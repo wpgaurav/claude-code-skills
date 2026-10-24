@@ -1,14 +1,23 @@
 # Notices and attribution
 
-This repository collects Agent Skills from three sources. Each folder's `SKILL.md` frontmatter names its license; this file explains the provenance so nothing here reads as more original than it is.
+This repository collects Agent Skills from four sources. Each folder's `SKILL.md` frontmatter names its license; this file explains the provenance so nothing here reads as more original than it is.
 
 ## Written here (MIT)
 
-- `stop-slop` by Gaurav Tiwari.
 - `slop-detector` by Gaurav Tiwari. The severity model, `slop-detector.json`, the reference files, and the scripts were built for a private publishing system and released here after removing site-specific references.
 - Repository scaffolding: `install.sh`, `scripts/`, the GitHub workflow, and this documentation.
 
 Covered by [LICENSE](./LICENSE).
+
+## Stop Slop, based on Hardik Pandya's original (MIT)
+
+- `stop-slop`
+
+`stop-slop` is based on [stop-slop](https://github.com/hardikpandya/stop-slop) by Hardik Pandya (MIT, Copyright (c) 2025 Hardik Pandya), first published on 2026-01-11. Earlier versions of this repository credited it to Gaurav Tiwari alone. That was wrong, and it is corrected as of version 1.2.0.
+
+What is Hardik's: the five core rules, the first four quick checks, the five-dimension scoring grid, the original sections of `references/phrases.md` (throat-clearing openers, emphasis crutches, business jargon, filler adverbs, meta-commentary) and `references/structures.md` (binary contrasts, dramatic fragmentation, rhetorical setups, formulaic constructions, rhythm patterns), and examples 1 to 5.
+
+What Gaurav Tiwari added: the severity model ("How I Read a Match"), rules 6 to 9, "What I Keep," the self-audit, the scored pass, "What It Won't Do," the remaining quick checks, the other sections of both reference files, and examples 6 to 13. Example 4's em dash became a colon. The folder's [LICENSE](./stop-slop/LICENSE) carries both copyright lines, and the whole skill is MIT.
 
 ## Adapted from impeccable (Apache License 2.0)
 
