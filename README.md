@@ -10,7 +10,7 @@ Each folder is a self-contained skill: a `SKILL.md` with instructions, plus refe
 
 | Skill | What it does | Origin | License |
 |---|---|---|---|
-| [stop-slop](./stop-slop) | Five drafting rules that remove predictable AI writing patterns: filler phrases, formulaic structures, metronomic rhythm, hand-holding, and pull-quote sentences. | Gaurav Tiwari | MIT |
+| [stop-slop](./stop-slop) | Removes predictable AI writing patterns without flattening the writer's voice: Hardik's five drafting rules, a four-tier severity model, four more rules against production narration and fake human texture, and a list of plain words it refuses to ban. | Based on [Hardik Pandya's stop-slop](https://github.com/hardikpandya/stop-slop), extended by Gaurav Tiwari | MIT |
 | [slop-detector](./slop-detector) | Scores a draft or page against a four-tier severity model. Exact production narration fails outright, rhetorical scaffolds warn when repeated, lexical tells become review prompts, and document-level patterns are diagnosed. Ships a scanner, a caption linter, and regression tests. | Gaurav Tiwari | MIT |
 | [red-pen](./red-pen) | Strict line editor built on Orwell's "Politics and the English Language" and Butterick's *Practical Typography*. Returns marked-up issues with a reason per change. | [Rich Tabor](https://github.com/richtabor/agent-skills) | See [NOTICE.md](./NOTICE.md) |
 | [clarify](./clarify) | Rewrites UX copy: button labels, error messages, helper text, empty states. Says what happened, what to do next, and cuts the rest. | Adapted from [impeccable](https://github.com/pbakaus/impeccable) | Apache-2.0 |
@@ -102,7 +102,7 @@ Pull requests welcome. The bar is the one the skills enforce: short, opinionated
 
 ## Support This Project
 
-These free skills catch AI slop in copy, design and code, using plain Markdown and Python files that work in Claude Code, Codex and Cursor. I wrote stop-slop and slop-detector, and a GitHub workflow validates the whole repo and runs its tests on every push.
+These free skills catch AI slop in copy, design and code, using plain Markdown and Python files that work in Claude Code, Codex and Cursor. I wrote slop-detector and extended Hardik Pandya's stop-slop, and a GitHub workflow validates the whole repo and runs its tests on every push.
 
 You can buy me a coffee if slop-detector flagged an AI tell in one of your drafts before your readers saw it.
 
@@ -112,4 +112,4 @@ A star is welcome, and when you find an AI tell the detector misses, a pull requ
 
 ## License and attribution
 
-`stop-slop`, `slop-detector`, and the repository scaffolding are MIT ([LICENSE](./LICENSE)). The five impeccable-derived skills are Apache-2.0 ([LICENSE-APACHE-2.0](./LICENSE-APACHE-2.0)). `red-pen` is Rich Tabor's work, redistributed with attribution and without a license grant. Details in [NOTICE.md](./NOTICE.md).
+`slop-detector` and the repository scaffolding are MIT ([LICENSE](./LICENSE)). `stop-slop` is MIT under two copyright lines, Hardik Pandya's original and Gaurav Tiwari's additions ([stop-slop/LICENSE](./stop-slop/LICENSE)). The five impeccable-derived skills are Apache-2.0 ([LICENSE-APACHE-2.0](./LICENSE-APACHE-2.0)). `red-pen` is Rich Tabor's work, redistributed with attribution and without a license grant. Details in [NOTICE.md](./NOTICE.md).
